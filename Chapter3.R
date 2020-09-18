@@ -19,3 +19,6 @@ question1select1 <- select(flights, dep_time, dep_delay, arr_time, arr_delay)
 question1select2 <- select(flights, ends_with("_time"), ends_with("_delay"), -contains("air"), -contains("sched"))
 rename(question1select1, florisiscool = dep_time)
 test_any_of <- select(flights, anyof(c("dep_time", "deptime", "bla bla", "year", "yearj")))
+#Set of questions dealing with mutate
+tijden <- transmute(flights, dep_time, hour = dep_time %/% 100, minute = dep_time %% 100, minutes_since_midnight = (hour*60) + minute)
+tijden <- mutate(tijden, air_time = (arr_hour - dep_hour)*100 + (arr_minute - dep_minute))
