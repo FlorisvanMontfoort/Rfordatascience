@@ -4,6 +4,8 @@ setwd("C:/Users/31636/Desktop/R/Rfordatascience")
 install.packages("nycflights13")
 library(tidyverse)
 library(nycflights13)
+#First I convert the dataset to a tibble so it prints nicely 
+nycflights <- as_tibble(nycflights13::flights)
 #The first set of questions deal with the filter function
 question1a <- filter(flights, arr_delay>=120)
 question1b <- filter(flights, dest=="HOU" | dest=="IAH")
@@ -22,3 +24,6 @@ test_any_of <- select(flights, anyof(c("dep_time", "deptime", "bla bla", "year",
 #Set of questions dealing with mutate
 tijden <- transmute(flights, dep_time, hour = dep_time %/% 100, minute = dep_time %% 100, minutes_since_midnight = (hour*60) + minute)
 tijden <- mutate(tijden, air_time = (arr_hour - dep_hour)*100 + (arr_minute - dep_minute))
+#Group-by and the pipe
+not_cancelled <- flights %>% filter(!is.na(dep_delay), !is.na(arr_delay))
+not_cancelled %>% group_by(year, month, day) %>% summarize(avg_delay1 = mean(arr_delay), avg_delay2 = mean(arr_delay[arr_delay>0]))
