@@ -1,4 +1,4 @@
-#Chapter 3 covers working with dyplr, which is part of the tidyverse package. This code contains a selection of the different questions that the chapter contains. 
+#Chapter 3 covers working with dyplr, which is part of the tidyverse package. This code deals with a selection of the different questions that the chapter contains. 
 rm(list=ls())
 setwd("C:/Users/31636/Desktop/R/Rfordatascience")
 install.packages("nycflights13")
